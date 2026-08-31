@@ -102,31 +102,3 @@ esa cumpleañera; si es la décima, en el décimo.
 3. Generá un código QR que apunte a la URL que te da GitHub Pages. No hace
    falta lógica especial en el QR: el sorteo de quién arranca y el
    intercalado de preguntas los hace la página sola al abrirse.
-
-## Revisión de ortografía, gramática y persona gramatical
-
-Todas las preguntas quedaron en primera persona (como si Meli y Male las
-estuvieran haciendo sobre sí mismas) y con acentos corregidos. Cambios
-puntuales:
-
-**Meli**
-- "cuando", "cual", "a que hs nacio", "cuantos", "cuantas", "a que division"
-  → con sus acentos: *cuándo*, *cuál*, *a qué hora nací*, *cuántos*,
-  *cuántas*, *a qué división*.
-- "canto" → "canté" (primera persona).
-- "Adios nonino" → "Adiós Nonino" (nombre propio, con mayúscula y acento).
-- "tatus" → "tatuajes".
-
-**Male**
-- "cuando", "a que division", "cual", "cuantas" → con acentos.
-- "canto" → "canté" (primera persona); "iba" ya estaba en primera persona.
-- "Northern lights" → "Northern Lights"; "cantate domino" → "Cantate
-  Domino"; "guayaboso" → "Guayaboso" (nombres propios, con mayúscula).
-- "Yaguaretes" → "Yaguaretés" (lleva tilde).
-- "estacion favorita del año" y "medio de transporte favorito" pasaron a
-  preguntas completas: "¿Cuál es mi estación favorita del año?" y "¿Cuál es
-  mi medio de transporte favorito?". Para la estación, agregué "Verano" y
-  "Otoño" como distractores (solo indicaste que Primavera era la correcta).
-- "le gustan los autos: V/F" y "leyó el Quijote a los 10: V/F" pasaron a
-  afirmaciones en primera persona con Verdadero/Falso: "Me gustan los
-  autos." (Falso) y "Leí el Quijote a los 10 años." (Falso).
