@@ -4,8 +4,8 @@
 // la app funciona igual, pero solo imprime el resultado en la
 // consola en lugar de guardarlo.
 // ---------------------------------------------------------------
-const SUPABASE_URL = "https://TU-PROYECTO.supabase.co";
-const SUPABASE_ANON_KEY = "TU-ANON-KEY";
+const SUPABASE_URL = "https://hwudmfdxkmyytzsupweq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_PUTr3HcNEm9m1MlKE24YaA_9uiFFRuL";
 
 let supabase = null;
 if (!SUPABASE_URL.includes("TU-PROYECTO")) {
