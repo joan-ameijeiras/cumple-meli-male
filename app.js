@@ -69,8 +69,8 @@ const SURVEYS = {
         id: "secundaria",
         type: "choice",
         prompt: "En la secundaria, ¿a qué división fui?",
-        options: ["7", "5", "12"],
-        correct: "7",
+        options: ["7º", "5º", "12º"],
+        correct: "7º",
       },
       {
         id: "vestido",
@@ -206,7 +206,7 @@ const state = {
   guesses: { meli: 50, male: 50 },
   answers: { meli: {}, male: {} },
   scores: { meli: 0, male: 0 }, // se calculan al terminar, ver computeScores()
-  optionOrderCache: {}, // `${surveyId}-${questionId}` -> string[]
+  optionOrderCache: {}, // `${surveyId}-${questionId}` -> string[]          
 };
 state.sequence = buildSequence(state.order);
 
@@ -471,7 +471,7 @@ function renderThanks() {
       <p class="subtext">
         Meli: ${state.scores.meli}/${totalMeli} · Male: ${state.scores.male}/${totalMale}
       </p>
-      <p class="subtext">Ya guardamos tus respuestas. Nos vemos en la fiesta.</p>
+      <p class="subtext">Ya guardamos tus respuestas. En breve revelaremos ganadores...</p>
     </div>
   `;
 }
