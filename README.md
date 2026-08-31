@@ -89,17 +89,3 @@ probar antes de conectar la base).
 3. Generá un código QR que apunte a la URL que te da GitHub Pages (cualquier
    generador de QR online sirve). No hace falta lógica especial en el QR: el
    sorteo de qué encuesta va primero lo hace la página sola al abrirse.
-
-## Revisión de ortografía y gramática (encuesta de Meli)
-
-Se corrigieron estos puntos respecto del texto original:
-- Acentos faltantes: *qué*, *cuántos*, *cuántas* (ya estaban bien en algunos
-  casos, se unificó en todos), *cantó*, *división*.
-- "Adios nonino" → "Adiós Nonino" (nombre propio de la obra, con mayúscula y
-  acento).
-- Mayúscula inicial en "¿cuantos pianistas...?".
-- Coma antes de las preguntas encadenadas: "En la primaria, ¿era..." y "En la
-  secundaria, ¿a qué...".
-- "tatus" → "tatuajes"; se agregó la coma en "Uno, por accidente".
-- `\bold{el}` se resolvió como el énfasis que probablemente buscabas: la
-  palabra "el" va en negrita dentro de la pregunta del vestido.
