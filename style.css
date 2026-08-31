@@ -1,0 +1,372 @@
+/* ---------------------------------------------------------
+   Tokens
+--------------------------------------------------------- */
+:root {
+  --paper: #fbf6ec;
+  --paper-dim: #f3ecdd;
+  --ink: #2b231d;
+  --ink-soft: #6f6154;
+  --line: #e4d9c6;
+
+  --meli: #d6455d;
+  --meli-dark: #a92f43;
+  --meli-soft: #f7dde2;
+
+  --male: #2e8b6f;
+  --male-dark: #205f4c;
+  --male-soft: #dcefe6;
+
+  --gold: #dfa23a;
+
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --accent: var(--meli);
+  --accent-dark: var(--meli-dark);
+  --accent-soft: var(--meli-soft);
+}
+
+/* ---------------------------------------------------------
+   Base
+--------------------------------------------------------- */
+* { box-sizing: border-box; }
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+  display: flex;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+#app {
+  width: 100%;
+  max-width: 460px;
+  min-height: 100vh;
+  padding: 28px 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   Shared bits
+--------------------------------------------------------- */
+.eyebrow-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-dark);
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 440;
+  font-size: 30px;
+  line-height: 1.18;
+  color: var(--ink);
+  margin: 0;
+}
+
+.headline em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+.subtext {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin: 10px 0 0;
+  max-width: 34ch;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 15px 26px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--accent-dark);
+  color: var(--paper);
+  box-shadow: 0 6px 0 0 color-mix(in srgb, var(--accent-dark) 70%, black);
+}
+
+.btn-primary:active { box-shadow: 0 2px 0 0 color-mix(in srgb, var(--accent-dark) 70%, black); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 12px 10px;
+}
+
+.btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.btn-row .btn-primary { flex: 1; }
+
+/* ---------------------------------------------------------
+   Reception screen
+--------------------------------------------------------- */
+.reception {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blob {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 22px;
+}
+
+.blob svg { width: 100%; height: 100%; }
+
+.reception .headline { font-size: 34px; margin-bottom: 4px; }
+
+.guess-list {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.guess-row .guess-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.guess-row[data-who="meli"] .guess-label { color: var(--meli-dark); }
+.guess-row[data-who="male"] .guess-label { color: var(--male-dark); }
+
+.guess-value { font-size: 15px; color: var(--ink-soft); font-family: var(--font-body); }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  outline: none;
+}
+
+.guess-row[data-who="meli"] input[type="range"] {
+  background: linear-gradient(90deg, var(--meli) var(--val, 50%), var(--line) var(--val, 50%));
+}
+.guess-row[data-who="male"] input[type="range"] {
+  background: linear-gradient(90deg, var(--male) var(--val, 50%), var(--line) var(--val, 50%));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+}
+.guess-row[data-who="meli"] input[type="range"]::-webkit-slider-thumb { border-color: var(--meli-dark); }
+.guess-row[data-who="male"] input[type="range"]::-webkit-slider-thumb { border-color: var(--male-dark); }
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------
+   Survey header (photo + name + progress)
+--------------------------------------------------------- */
+.survey-header { margin-bottom: 26px; }
+
+.photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-fallback {
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: var(--accent-dark);
+}
+
+.photo-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: var(--paper);
+  color: var(--accent-dark);
+  font-family: var(--font-display);
+  font-size: 19px;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.dot.is-done { background: var(--accent); }
+.dot.is-current { background: var(--accent-dark); transform: scale(1.5); }
+
+/* ---------------------------------------------------------
+   Question
+--------------------------------------------------------- */
+.question-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: rise 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.question-text {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.28;
+  margin: 0 0 22px;
+}
+
+.options { display: flex; flex-direction: column; gap: 10px; }
+
+.option {
+  text-align: left;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 15px 18px;
+  font-size: 16px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option:hover { border-color: var(--accent); }
+
+.option.is-selected {
+  border-color: var(--accent-dark);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.text-input {
+  border: none;
+  border-bottom: 2px solid var(--line);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 26px;
+  padding: 8px 2px 12px;
+  color: var(--ink);
+  width: 100%;
+}
+
+.text-input:focus { border-bottom-color: var(--accent-dark); }
+
+/* ---------------------------------------------------------
+   Placeholder / thank-you screens
+--------------------------------------------------------- */
+.centered-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.centered-screen .headline { font-size: 26px; }
+
+.big-emoji-free-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--accent-dark);
+}
+
+.status-line {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
