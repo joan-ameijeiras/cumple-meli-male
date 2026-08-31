@@ -19,6 +19,7 @@ const SURVEYS = {
       {
         id: "fecha",
         type: "text",
+        format: "ddmm",
         prompt: "¿Cuándo es mi cumple?",
         placeholder: "dd/mm",
         correct: "28/08",
@@ -69,8 +70,8 @@ const SURVEYS = {
         id: "secundaria",
         type: "choice",
         prompt: "En la secundaria, ¿a qué división fui?",
-        options: ["7º", "5º", "12º"],
-        correct: "7º",
+        options: ["7", "5", "12"],
+        correct: "7",
       },
       {
         id: "vestido",
@@ -96,6 +97,7 @@ const SURVEYS = {
       {
         id: "fecha",
         type: "text",
+        format: "ddmm",
         prompt: "¿Cuándo es mi cumple?",
         placeholder: "dd/mm",
         correct: "31/08",
@@ -179,6 +181,15 @@ function shuffle(arr) {
   return a;
 }
 
+// Convierte lo que se va tipeando en un campo de fecha (solo
+// números) al formato dd/mm, igual que un campo de vencimiento de
+// tarjeta: "2808" -> "28/08".
+function formatDDMM(raw) {
+  const digits = raw.replace(/\D/g, "").slice(0, 4);
+  if (digits.length <= 2) return digits;
+  return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+}
+
 // Intercala las preguntas de las dos encuestas (una de cada
 // cumpleañera por turno) en vez de mostrar una encuesta entera
 // seguida de la otra. Quién arranca se sortea una sola vez; si una
@@ -206,7 +217,7 @@ const state = {
   guesses: { meli: 50, male: 50 },
   answers: { meli: {}, male: {} },
   scores: { meli: 0, male: 0 }, // se calculan al terminar, ver computeScores()
-  optionOrderCache: {}, // `${surveyId}-${questionId}` -> string[]          
+  optionOrderCache: {}, // `${surveyId}-${questionId}` -> string[]
 };
 state.sequence = buildSequence(state.order);
 
@@ -410,7 +421,8 @@ function renderQuestion() {
   } else {
     bodyHtml = `
       <input class="text-input" type="text" id="text-answer"
-             placeholder="${question.placeholder || ""}" value="${saved || ""}" />
+             placeholder="${question.placeholder || ""}" value="${saved || ""}"
+             ${question.format === "ddmm" ? 'inputmode="numeric" maxlength="5"' : ""} />
     `;
   }
 
@@ -448,6 +460,9 @@ function renderQuestion() {
     const input = document.getElementById("text-answer");
     enableIfReady(input.value.trim());
     input.addEventListener("input", () => {
+      if (question.format === "ddmm") {
+        input.value = formatDDMM(input.value);
+      }
       state.answers[survey.id][question.id] = input.value.trim();
       enableIfReady(input.value.trim());
     });
@@ -471,7 +486,7 @@ function renderThanks() {
       <p class="subtext">
         Meli: ${state.scores.meli}/${totalMeli} · Male: ${state.scores.male}/${totalMale}
       </p>
-      <p class="subtext">Ya guardamos tus respuestas. En breve revelaremos ganadores...</p>
+      <p class="subtext">Ya guardamos tus respuestas. Nos vemos en la fiesta.</p>
     </div>
   `;
 }
