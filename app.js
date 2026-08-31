@@ -199,8 +199,8 @@ function renderReception() {
   app.innerHTML = `
     <div class="reception">
       <div class="blob">${blobSvg()}</div>
-      <h1 class="headline">¿Qué tanto <em>conocés</em> a las cumpleañeras?</h1>
-      <p class="subtext">Antes de arrancar, decinos qué puntaje esperás sacar en cada encuesta.</p>
+      <h1 class="headline"> QUIZ ¿Qué tanto <em>conocés</em> a las cumpleañeras?</h1>
+      <p class="subtext"> ¿Qué puntaje esperás sacar en cada encuesta?</p>
 
       <div class="guess-list">
         <div class="guess-row" data-who="meli">
@@ -303,7 +303,7 @@ function renderQuestion() {
     bodyHtml = `
       <input class="text-input" type="text" id="text-answer"
              placeholder="${question.placeholder || ""}" value="${saved || ""}" />
-      <p class="field-hint">Escribila como te salga, no hace falta que sea exacta.</p>
+      <p class="field-hint"></p>
     `;
   }
 
